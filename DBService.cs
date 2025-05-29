@@ -100,7 +100,7 @@ namespace MySqlDBService
 
                     for (int i = 0; i < args.Length; i++)
                     {
-                        string param = $"@{i}, ";
+                        string param = $"@{i}, "; //ide new param amit bele listaba akk nem kell 2 loop
                         vars += param;
                     }
 
