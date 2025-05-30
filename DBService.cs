@@ -1,5 +1,6 @@
 ﻿using MySqlConnector;
 using System;
+using System.Collections.Generic;
 
 namespace MySqlDBService
 {
@@ -85,8 +86,9 @@ namespace MySqlDBService
                 throw new Exception("No procedure created yet.");
             }
 
-            cmd.Parameters.AddWithValue(name, value);
-            cmd.Parameters[name].Direction = System.Data.ParameterDirection.Input;
+            MySqlParameter parameter = new MySqlParameter(name, value);
+            parameter.Direction = System.Data.ParameterDirection.Input;
+            cmd.Parameters.Add(parameter);
         }
 
 
@@ -100,8 +102,7 @@ namespace MySqlDBService
 
                     for (int i = 0; i < args.Length; i++)
                     {
-                        string param = $"@{i}, "; //ide new param amit bele listaba akk nem kell 2 loop
-                        vars += param;
+                        vars += $"@{i}, ";
                     }
 
                     vars = vars.TrimEnd(',', ' ');
